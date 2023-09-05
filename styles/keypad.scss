@@ -1,0 +1,44 @@
+@use './variables.scss' as v;
+
+.keypad {
+    margin-block-start: 32px;
+    padding: 24px;
+
+    background-color: v.$background-screen-t1;
+    border-radius: 10px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    row-gap: 13px;
+    column-gap: 13px;
+
+    .long {
+        grid-column: span 2;
+    }
+}
+
+.t1 .keypad {
+    background-color: v.$background-screen-t1;
+}
+
+.t2 .keypad {
+    background-color: v.$background-screen-t2;
+}
+
+.t3 .keypad {
+    background-color: v.$background-screen-t3;
+}
+
+@media only screen and (max-width: v.$extra-small) {
+    .keypad {
+        padding: 24px 6px;
+    }
+}
+
+@media only screen and (min-width: v.$desktop) {
+    .keypad{
+        row-gap: 25px;
+        column-gap: 25px;
+    }
+}

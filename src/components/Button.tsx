@@ -1,22 +1,21 @@
 interface ButtonProps {
   util?: boolean;
   equals?: boolean;
+  long?:boolean;
+  children?: string;
 }
 
 function Button({
   util = false,
   equals = false,
+  long = false,
+  children = '',
 } : ButtonProps) {
 
   return (
-    <div className='button-container'>
-      <button className={`button ${util ? 'util' : ''} ${equals ? 'equals' : ''}`}>
-        0
-      </button>
-      <div className={`button-shadow ${util ? 'util' : ''} ${equals ? 'equals' : ''}`}>
-
-      </div>
-    </div>
+    <button className={`button ${util ? 'util' : ''} ${equals ? 'equals' : ''} ${long ? 'long' : ''}`}>
+      {children}
+    </button>
   )
 }
 
