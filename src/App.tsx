@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import Button from './components/Button'
 
 function App() {
 
   return (
     <>
-      <div></div>
+      <div className={`t3`}>
+        <Button />
+        <Button util={true} />
+        <Button equals={true} />
+      </div>
     </>
   )
 }

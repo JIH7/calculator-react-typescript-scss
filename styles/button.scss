@@ -1,0 +1,142 @@
+@use './variables.scss' as v;
+
+.button-container {
+    margin-top: 10px;
+
+    position: relative;
+}
+
+.button {
+    transition-property: background-color;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+
+    position: relative;
+    z-index: v.$button-index;
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 5px;
+
+    border: none;
+    outline: none;
+
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.533px;
+}
+
+.button-shadow{
+    top: 4px;
+
+    position: absolute;
+    z-index: v.$button-shadow-index;
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 5px;
+
+    border: none;
+    outline: none;
+}
+
+.t1 {
+    .button {
+        background-color: v.$key-t1;
+        color: v.$text-dark-t1;
+    }
+
+    .button:hover,
+    .button-shadow {
+        background-color: v.$key-shadow-t1;
+    }
+
+    .button.util {
+        background-color: v.$util-key-t1;
+        color: v.$text-light-t1;
+    }
+
+    .button.util:hover,
+    .button-shadow.util {
+        background-color: v.$util-key-shadow-t1;
+    }
+
+    .button.equals {
+        background-color: v.$equals-key-toggle-t1;
+        color: v.$text-light-t1;
+    }
+
+    .button.equals:hover,
+    .button-shadow.equals {
+        background-color: v.$equals-key-toggle-shadow-t1;
+    }
+}
+
+.t2 {
+    .button {
+        background-color: v.$key-t2;
+        color: v.$text-dark-t2;
+    }
+
+    .button:hover,
+    .button-shadow {
+        background-color: v.$key-shadow-t2;
+    }
+
+    .button.util {
+        background-color: v.$util-key-t2;
+        color: v.$text-light-t2;
+    }
+
+    .button.util:hover,
+    .button-shadow.util {
+        background-color: v.$util-key-shadow-t2;
+    }
+
+    .button.equals {
+        background-color: v.$equals-key-toggle-t2;
+        color: v.$text-light-t1;
+    }
+
+    .button.equals:hover,
+    .button-shadow.equals {
+        background-color: v.$equals-key-toggle-shadow-t2;
+    }
+}
+
+.t3 {
+    .button {
+        background-color: v.$key-t3;
+        color: v.$text-dark-t3;
+    }
+
+    .button:hover,
+    .button-shadow {
+        background-color: v.$key-shadow-t3;
+    }
+
+    .button.util {
+        background-color: v.$util-key-t3;
+        color: v.$text-light-t3;
+    }
+
+    .button.util:hover,
+    .button-shadow.util {
+        background-color: v.$util-key-shadow-t3;
+    }
+
+    .button.equals {
+        background-color: v.$equals-key-toggle-t3;
+        color: v.$text-darker-t3;
+    }
+
+    .button.equals:hover,
+    .button-shadow.equals {
+        background-color: v.$equals-key-toggle-shadow-t3;
+    }
+}

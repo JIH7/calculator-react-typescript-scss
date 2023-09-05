@@ -1,3 +1,7 @@
+// Z-indexes
+$button-index: 10;
+$button-shadow-index: 2;
+
 // Theme 1
 
 // Backgrounds
@@ -50,7 +54,7 @@ $text-dark-t2: hsl(60, 10%, 19%);
 // Backgrounds
 
 $background-main-t3: hsl(268, 75%, 9%);
-$background-keypad-toggle-t3: hsl(268, 71%, 12%);
+$background-keypad-toggle-t3: hsl(268, 70%, 12%);
 $background-screen-t3: hsl(268, 71%, 12%);
 
 // Keys
@@ -61,8 +65,8 @@ $key-shadow-t3: hsl(290, 70%, 36%);
 $equals-key-toggle-t3: hsl(176, 100%, 44%);
 $equals-key-toggle-shadow-t3: hsl(177, 92%, 70%);
 
-$util-key-t3: hsl(268, 47%, 21%);
-$util-key-shadow-t3: hsl(290, 70%, 36%);
+$util-key-t3: hsl(281, 89%, 26%);
+$util-key-shadow-t3: hsl(285, 91%, 52%);
 
 // Text
 
