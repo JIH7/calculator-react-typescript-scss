@@ -1,26 +1,57 @@
 import Button from "./Button"
 
-function Keypad() {
+interface KeypadProps {
+  updateCalculator?: Function;
+}
+
+function Keypad({
+  updateCalculator = (input:string) => {
+    console.log("No 'updateCalculator()' function set within component 'Keypad'.")
+  }
+}: KeypadProps) {
   return (
     <section className={`keypad`}>
-        <Button>7</Button>
-        <Button>8</Button>
-        <Button>9</Button>
-        <Button util={true}>DEL</Button>
-        <Button>4</Button>
-        <Button>5</Button>
-        <Button>6</Button>
-        <Button>+</Button>
-        <Button>1</Button>
-        <Button>2</Button>
-        <Button>3</Button>
-        <Button>-</Button>
-        <Button>.</Button>
-        <Button>0</Button>
-        <Button>/</Button>
-        <Button>x</Button>
-        <Button util={true} long={true}>RESET</Button>
-        <Button equals={true} long={true}>=</Button>
+        <Button
+        updateCalculator={updateCalculator}>7</Button>
+        <Button
+        updateCalculator={updateCalculator}>8</Button>
+        <Button
+        updateCalculator={updateCalculator}>9</Button>
+        <Button
+        updateCalculator={updateCalculator}
+        util={true}>DEL</Button>
+        <Button
+        updateCalculator={updateCalculator}>4</Button>
+        <Button
+        updateCalculator={updateCalculator}>5</Button>
+        <Button
+        updateCalculator={updateCalculator}>6</Button>
+        <Button
+        updateCalculator={updateCalculator}>+</Button>
+        <Button
+        updateCalculator={updateCalculator}>1</Button>
+        <Button
+        updateCalculator={updateCalculator}>2</Button>
+        <Button
+        updateCalculator={updateCalculator}>3</Button>
+        <Button
+        updateCalculator={updateCalculator}>-</Button>
+        <Button
+        updateCalculator={updateCalculator}>.</Button>
+        <Button
+        updateCalculator={updateCalculator}>0</Button>
+        <Button
+        updateCalculator={updateCalculator}>/</Button>
+        <Button
+        updateCalculator={updateCalculator}>x</Button>
+        <Button
+        updateCalculator={updateCalculator}
+        util={true}
+        long={true}>RESET</Button>
+        <Button
+        updateCalculator={updateCalculator}
+        equals={true}
+        long={true}>=</Button>
     </section>
   )
 }
