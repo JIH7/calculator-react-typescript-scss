@@ -10,13 +10,42 @@ class Calculator {
 
     // Parse input to determine necessary method call
     process:Function = (input: string):void => {
+        // Hard clear is true when the screen displays error text
+        if (this.data.hardClearOnInput)
+            this.reset();
+
+        // Main conditional of function
         if (input === "RESET") {
             this.reset();
         } else if (input === "DEL") {
             this.delete();
+        } else if (input === "-" && this.data.displayValue === "0") {
+            this.data.insertNegative = true;
         } else if (input === "+" || input === "-" || input === "x" || input === "/") {
-            this.data.operator = input;
+            if(this.data.opsLocked) {
+                // To allow more operations after a standard evaluation
+                this.data.opsLocked = false;
+                this.data.secondOperand = null;
+                this.data.clearOnInput = false;
+
+                this.data.operator = input;
+            } else if (this.data.secondOperand !== null) {
+                // For chain evaulations
+                this.evaluate();
+                this.data.opsLocked = false;
+                this.data.clearOnInput = false;
+                this.data.secondOperand = null;
+                
+                this.data.operator = input;
+            } else {
+                this.data.operator = input;
+                this.data.opsLocked = false;
+                this.data.secondOperand = null;
+            } 
         } else if (input === ".") {
+            if (this.data.clearOnInput)
+                this.reset();
+
             this.data.insertDecimal = true;
         } else if (input === "=") {
             this.evaluate();
@@ -25,9 +54,11 @@ class Calculator {
         }
 
         // Clear decimal
-        if(input !== '.')
+        if (input !== '.')
             this.data.insertDecimal = false;
-
+        // Clear negative
+        if (input !== '-')
+            this.data.insertNegative = false;
         console.log(this.data)
     }
 
@@ -76,6 +107,12 @@ class Calculator {
             } else if (operator === "x") {
                 this.data.currentValue = op1 * op2;
             } else {
+                if (op2 === 0) {
+                    this.data.displayValue = "Err:Divide by 0"
+                    this.data.hardClearOnInput = true;
+                    return;
+                }
+
                 this.data.currentValue = op1 / op2;
             }
 
@@ -85,6 +122,9 @@ class Calculator {
     }
 
     addDigit:Function = (num:string):void => {
+        if (this.data.clearOnInput)
+            this.reset();
+
         if(this.data.operator !== null && this.data.secondOperand === null) { // Case where operator is set but not opperand
             this.data.secondOperand = this.data.currentValue;
             this.data.displayValue = num;
@@ -94,6 +134,8 @@ class Calculator {
             } else {
                 this.data.displayValue += num;
             }
+        } else if (this.data.insertNegative) { // Case where user wants to make a number negative
+            this.data.displayValue = `-${num}`
         } else if (this.data.displayValue === "0") { // Case where 0 must be overwritten
             this.data.displayValue = num;
         } else { // Case where digit is appended

@@ -9,19 +9,31 @@ import ThemeChanger from './components/ThemeChanger';
 import Screen from './components/Screen';
 import Keypad from './components/Keypad';
 
+const loadColorPref = ():string => {
+  if (localStorage.getItem('colorPref') !== null) {
+    const colorPref = localStorage.getItem('colorPref');
+    return colorPref ?? 't1';
+  }
+
+  return 't1';
+}
+
 function App() {
-  const [theme, setTheme] = useState('t1')
+  const [theme, setTheme] = useState(loadColorPref())
   const [calcData, setCalcData] = useState(new CalculatorData())
 
+  useEffect(() => {
+    localStorage.setItem('colorPref', theme);
+  }, [theme])
+
   const processKeyboardInput = (key:string) => {
-    const validChars = '0123456789xX/=-.';
-    console.log(key)
+    const validChars = '0123456789xX+/=-.';
     if(key === '*') {
       updateCalculator('x');
       return;
     } else if (key === "Enter") {
       updateCalculator('=')
-    } else if (key === 'Backspace') {
+    } else if (key === 'Backspace' || key === "Delete") {
       updateCalculator('DEL');
       return;
     } else if (key.toLowerCase() === "r") {
@@ -34,13 +46,11 @@ function App() {
   }
 
   const updateCalculator = (input: string) => {
-    console.log("Updating calculator")
+    // Calculator object contains functions for operating on data. Seperated from data so spread operator can be used to pass by value without losing methods
     const calculator = new Calculator(calcData);
-
     calculator.process(input);
 
     const data = calculator.data;
-
     setCalcData({...data});
   }
 
