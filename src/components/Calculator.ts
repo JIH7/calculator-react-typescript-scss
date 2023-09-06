@@ -116,9 +116,18 @@ class Calculator {
                 this.data.currentValue = op1 / op2;
             }
 
-            this.data.displayValue = this.data.currentValue.toString();
+            this.trimNumber();
             this.data.clearOnInput = true;
+        } else {
+            this.trimNumber()
         }
+    }
+
+    // Limit decimal places ToDo: Make this takeremaining screen space into account
+    trimNumber:Function = () => {
+        const fixedNum = this.data.currentValue.toFixed(5);
+        this.data.currentValue = Number(fixedNum);
+        this.data.displayValue = this.data.currentValue.toString();
     }
 
     addDigit:Function = (num:string):void => {

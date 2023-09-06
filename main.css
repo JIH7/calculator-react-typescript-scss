@@ -229,6 +229,8 @@ table {
 }
 
 .screen {
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
   margin-block-start: 24px;
   box-sizing: border-box;
