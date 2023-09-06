@@ -8,59 +8,58 @@ class Calculator {
         this.data = data;
     }
 
+    // Valid inputs.
+    // Should be impossible to pass something not on this list, even with keyboard input due to the way it's handled in App.tsx
+
+    OPS = {
+        RESET: "RESET",
+        DEL: "DEL",
+        PLUS: "+",
+        MINUS: "-",
+        TIMES: "x",
+        DIVIDE: "/",
+        POINT: ".",
+        EQUALS: "=",
+        NUMS: "1234567890",
+    }
+
     // Parse input to determine necessary method call
+
     process:Function = (input: string):void => {
         // Hard clear is true when the screen displays error text
         if (this.data.hardClearOnInput)
             this.reset();
 
         // Main conditional of function
-        if (input === "RESET") {
+        if (input === this.OPS.RESET) {
             this.reset();
-        } else if (input === "DEL") {
+        } else if (input === this.OPS.DEL) {
             this.delete();
-        } else if (input === "-" && this.data.displayValue === "0") {
+        } else if (input === this.OPS.MINUS && this.data.displayValue === "0") {
+        // Case for inputing a negative. data.insertNegative is set to false if anything else is input
             this.data.insertNegative = true;
-        } else if (input === "+" || input === "-" || input === "x" || input === "/") {
-            if(this.data.opsLocked) {
-                // To allow more operations after a standard evaluation
-                this.data.opsLocked = false;
-                this.data.secondOperand = null;
-                this.data.clearOnInput = false;
-
-                this.data.operator = input;
-            } else if (this.data.secondOperand !== null) {
-                // For chain evaulations
-                this.evaluate();
-                this.data.opsLocked = false;
-                this.data.clearOnInput = false;
-                this.data.secondOperand = null;
-                
-                this.data.operator = input;
-            } else {
-                this.data.operator = input;
-                this.data.opsLocked = false;
-                this.data.secondOperand = null;
-            } 
-        } else if (input === ".") {
+        } else if (input === this.OPS.PLUS || input === this.OPS.MINUS || input === this.OPS.TIMES || input === this.OPS.DIVIDE) {
+            this.setOperator(input);
+        } else if (input === this.OPS.POINT) {
+        // If screen is primed to be cleared, start number with a new decimal
             if (this.data.clearOnInput)
                 this.reset();
 
             this.data.insertDecimal = true;
-        } else if (input === "=") {
+        } else if (input === this.OPS.EQUALS) {
             this.evaluate();
-        } else {
+        } else if (this.OPS.NUMS.includes(input)) {
             this.addDigit(input);
         }
 
-        // Clear decimal
-        if (input !== '.')
+        // Clear decimal and negative
+        if (input !== this.OPS.POINT)
             this.data.insertDecimal = false;
-        // Clear negative
-        if (input !== '-')
+        if (input !== this.OPS.MINUS)
             this.data.insertNegative = false;
-        console.log(this.data)
     }
+
+    // Calculator functions
 
     reset:Function = ():void => {
         this.data = new CalculatorData();
@@ -82,6 +81,32 @@ class Calculator {
         }
     }
 
+    setOperator:Function = (operator:string):void => {
+        if(this.data.opsLocked) {
+            // To allow more operations after a standard evaluation
+            // When opsLocked is true, the values currentValue and secondOperand are switched for operations
+            this.data.opsLocked = false;
+            // Set clearOnInput to false is as calls reset(), which clears ALL data
+            this.data.clearOnInput = false;
+            // If secondOperand is null and operator is not, currentValue automatically moves to secondOperand when a number is input
+            this.data.secondOperand = null;
+            this.data.operator = operator;
+        } else if (this.data.secondOperand !== null) {
+            // For chain evaulations. If user has a currentValue, operator, and secondOperand, evaluate when a new operator is assigned
+            this.evaluate();
+            // Evaluate sets opsLocked and clearOnInput to true. This is a case where we don't want that as another number is expected
+            this.data.opsLocked = false;
+
+            this.data.clearOnInput = false;
+            this.data.secondOperand = null;
+            
+            this.data.operator = operator;
+        } else {
+            // Standard case
+            this.data.operator = operator;
+        } 
+    }
+
     evaluate:Function = ():void => {
         if (this.data.operator !== null && this.data.secondOperand !== null) {
             const operator = this.data.operator;
@@ -100,11 +125,11 @@ class Calculator {
                 op2 = this.data.secondOperand;
             }
 
-            if (operator === "+") {
+            if (operator === this.OPS.PLUS) {
                 this.data.currentValue = op1 + op2;
-            } else if (operator === "-") {
+            } else if (operator === this.OPS.MINUS) {
                 this.data.currentValue = op1 - op2;
-            } else if (operator === "x") {
+            } else if (operator === this.OPS.TIMES) {
                 this.data.currentValue = op1 * op2;
             } else {
                 if (op2 === 0) {
@@ -123,9 +148,11 @@ class Calculator {
         }
     }
 
-    // Limit decimal places ToDo: Make this takeremaining screen space into account
-    trimNumber:Function = () => {
-        const fixedNum = this.data.currentValue.toFixed(5);
+    // Limit decimal places
+    trimNumber:Function = ():void => {
+        const numLength = this.data.currentValue.toFixed(0).length;
+
+        const fixedNum = this.data.currentValue.toFixed(16 - numLength);
         this.data.currentValue = Number(fixedNum);
         this.data.displayValue = this.data.currentValue.toString();
     }
