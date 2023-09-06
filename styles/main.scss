@@ -42,7 +42,6 @@ main {
 @media only screen and (min-width: v.$tablet) {
     main {
         padding: 30px 200px;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -51,13 +50,25 @@ main {
 
 @media only screen and (min-width: v.$desktop) {
     main {
-        padding: 30px 31.25vw;
+        padding: 30px 31.25%;
+    }
+}
+
+@media only screen and (max-height: 655px) {
+    .screen {
+        margin-block-start: 8px;
+        padding: 12px 24px 12px 24px;
+    }
+
+    .keypad {
+        margin-block-start: 8px;
+        row-gap: 12px;
     }
 }
 
 @media only screen and (min-width: v.$desktop) {
     main {
-        padding: 30px 36vw;
+        padding: 30px 36%;
     }
 }
 
@@ -104,4 +115,3 @@ h1 {
     display: flex;
     align-items: center;
 }
-

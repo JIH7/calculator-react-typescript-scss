@@ -1,6 +1,8 @@
 @use './variables.scss' as v;
 
 .screen {
+    text-overflow: ellipsis;
+
     margin-block-start: 24px;
 
     box-sizing: border-box;

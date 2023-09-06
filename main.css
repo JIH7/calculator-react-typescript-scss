@@ -229,6 +229,7 @@ table {
 }
 
 .screen {
+  text-overflow: ellipsis;
   margin-block-start: 24px;
   box-sizing: border-box;
   padding: 29px 24px 22px 24px;
@@ -327,12 +328,22 @@ main {
 }
 @media only screen and (min-width: 1080px) {
   main {
-    padding: 30px 31.25vw;
+    padding: 30px 31.25%;
+  }
+}
+@media only screen and (max-height: 655px) {
+  .screen {
+    margin-block-start: 8px;
+    padding: 12px 24px 12px 24px;
+  }
+  .keypad {
+    margin-block-start: 8px;
+    row-gap: 12px;
   }
 }
 @media only screen and (min-width: 1080px) {
   main {
-    padding: 30px 36vw;
+    padding: 30px 36%;
   }
 }
 main.t1 {
