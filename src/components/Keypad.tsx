@@ -6,7 +6,7 @@ interface KeypadProps {
 
 function Keypad({
   updateCalculator = (input:string) => {
-    console.log("No 'updateCalculator()' function set within component 'Keypad'.")
+    console.log("No 'updateCalculator()' function set within component 'Keypad'. Input = " + input)
   }
 }: KeypadProps) {
   return (
