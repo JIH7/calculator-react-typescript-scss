@@ -23,7 +23,7 @@ class Calculator {
         NUMS: "1234567890",
     };
 
-    maxLength:number = 16;
+    maxLength:number = 12;
 
     // Parse input to determine necessary method call
 
