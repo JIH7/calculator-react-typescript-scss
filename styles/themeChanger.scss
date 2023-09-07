@@ -52,13 +52,23 @@
     }
 }
 
-.t1 .theme-changer button {
-    background-color: v.$background-keypad-toggle-t1;
+.t1 .theme-changer {
+    button {
+        background-color: v.$background-keypad-toggle-t1;
 
-    > div {
-        background-color: v.$equals-key-toggle-t1;
+        > div {
+            background-color: v.$equals-key-toggle-t1;
 
-        left: 0%;
+            left: 0%;
+        }
+    }
+
+    button:hover {
+        background-color: v.$background-screen-t1;
+
+        > div {
+            background-color: v.$equals-key-toggle-shadow-t1;
+        }
     }
 }
 

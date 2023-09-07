@@ -21,7 +21,9 @@ class Calculator {
         POINT: ".",
         EQUALS: "=",
         NUMS: "1234567890",
-    }
+    };
+
+    maxLength:number = 16;
 
     // Parse input to determine necessary method call
 
@@ -148,13 +150,13 @@ class Calculator {
         }
     }
 
-    // Limit decimal places
+    // Limit display value length to screen
     trimNumber:Function = ():void => {
-        const numLength = this.data.currentValue.toFixed(0).length;
-
-        const fixedNum = this.data.currentValue.toFixed(16 - numLength);
-        this.data.currentValue = Number(fixedNum);
-        this.data.displayValue = this.data.currentValue.toString();
+        if (Math.abs(this.data.currentValue) >= 1e16) {
+            this.data.displayValue = this.data.currentValue.toExponential(10);
+        } else {
+            this.data.displayValue = this.data.currentValue.toString();
+        }
     }
 
     addDigit:Function = (num:string):void => {
@@ -166,7 +168,11 @@ class Calculator {
             this.data.displayValue = num;
         } else if (this.data.insertDecimal) { // Case where the user wants to place decimal
             if (this.data.displayValue.indexOf('.') === -1) {
-                this.data.displayValue += `.${num}`;
+                // Handle maximum length number
+                if (this.data.displayValue.length < this.maxLength - 1)
+                    this.data.displayValue += `.${num}`;
+                else
+                    this.data.insertDecimal = false; // Clear value when there's not enough room
             } else {
                 this.data.displayValue += num;
             }
@@ -175,7 +181,8 @@ class Calculator {
         } else if (this.data.displayValue === "0") { // Case where 0 must be overwritten
             this.data.displayValue = num;
         } else { // Case where digit is appended
-            this.data.displayValue += num;
+            if (this.data.displayValue.length < this.maxLength)
+                this.data.displayValue += num;
         }
 
         this.data.currentValue = Number(this.data.displayValue);

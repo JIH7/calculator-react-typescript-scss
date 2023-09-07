@@ -106,7 +106,7 @@ export default KeyListener
 
 I believe (fingers crossed) that this implementation is memory safe. I always try to be wary when using `useEffect()` and I'm still learning the ins and outs.
 
-My actual calculator implementation is modeled largely after the behavior of the Windows 10 calculator since it was an easy reference. My previous versions had some major issues with chaining
+My actual calculator implementation is modeled largely after the behavior of the Windows 10 calculator since it was an easy reference. My previous versions had some major issues with chaining multiple operations. The first one also wouldn't handle overflow at all and would instead display an error message "OVERFLOW" on screen. I think my solution this time is pretty effective. There are maybe a few more booleans tracking aspects of calculator state than I'd like, but I think I've really trimmed the fat and reused things while also preventing more issues this time around.
 
 ### Continued development
 
