@@ -11,10 +11,7 @@ This is my solution to the [Calculator app challenge on Frontend Mentor](https:/
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 
 ## Overview
@@ -58,7 +55,7 @@ So this is actually the third time I've made this calculator. The first time I m
 
 [My second crack at it](https://helsel-react-calculator.netlify.app/) was my very first React project and my second Tailwind project. At that point I actually was using Git and so the [source](https://github.com/JIH7/react-tailwind-calculator) is still available. While it was a great way to learn React, I feel like the final product actually looks worse than my original! Also both versions have some pretty buggy calculator implementations.
 
-A recurring theme in my last several projects has been more organized styles. This time I learned about `@use` in SCSS. This allowed for much more organized style sheets that still all compile to one output CSS file, as well as the ability to import my SCSS variables when needed. I also used variables for my media query breakpoints which helped make things feel even more organized. I did encounter an issue when I switched from my desktop to my laptop, not realizing that my laptop had a zoom level of 1.5 times set in windows which completely broke my layout. I did learn a bit about CSS pixel ratios, but ultimately just added a media query for screen height that shrinks the page vertically a bit.
+A recurring theme in my last several projects has been more organized styles. This time I learned about `@use` in SCSS. This allowed for much more organized style sheets that still all compile to one output CSS file, as well as the ability to import my SCSS variables when needed. I also used variables for my media query breakpoints which helped make things feel even more organized. I did encounter an issue when I switched from my desktop to my laptop, not realizing that my laptop had a zoom level of 1.5 times set in Windows which completely broke my layout. I did learn a bit about CSS pixel ratios, but ultimately just added a media query for screen height that shrinks the page vertically a bit.
 
 As for React and TypeScript, I made a calculator class that I wanted to store in a state variable. I ran into issues updating it as using the spread operator to pass it's values so React would actually re-render caused the object to lose it's functions. Ultimately, I made a second class for the variables, and a new Calculator is declared every time something updates with a CalculatorData object passed into the constructor.
 
@@ -106,15 +103,9 @@ export default KeyListener
 
 I believe (fingers crossed) that this implementation is memory safe. I always try to be wary when using `useEffect()` and I'm still learning the ins and outs.
 
-My actual calculator implementation is modeled largely after the behavior of the Windows 10 calculator since it was an easy reference. My previous versions had some major issues with chaining multiple operations. The first one also wouldn't handle overflow at all and would instead display an error message "OVERFLOW" on screen. I think my solution this time is pretty effective. There are maybe a few more booleans tracking aspects of calculator state than I'd like, but I think I've really trimmed the fat and reused things while also preventing more issues this time around.
-
-### Continued development
-
-### Useful resources
+My actual calculator implementation is modeled largely after the behavior of the Windows 10 calculator since it was an easy reference. My previous versions had some major issues with chaining multiple operations. The first one also wouldn't handle overflow at all and would instead display an error message "OVERFLOW" on screen. I think my solution this time is pretty effective. There are maybe a few more booleans tracking aspects of calculator state than I'd like, but I think I've really trimmed the fat and reused things while also preventing more issues this time around. I spent longer than I care to admit writing a function to convert larger numbers to scientfic notation before realizing JavaScript has a built in function to do that.
 
 ## Author
 
 - Website - [Jeremy Helsel](https://jeremyhelsel.com/)
 - Frontend Mentor - [@JIH7](https://www.frontendmentor.io/profile/JIH7)
-
-## Acknowledgments
