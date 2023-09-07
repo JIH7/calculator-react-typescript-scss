@@ -107,6 +107,9 @@ table {
   background-color: hsl(25, 98%, 40%);
   left: calc(50% - 8px);
 }
+.t2 .theme-changer button:hover > div {
+  background-color: hsl(25, 99%, 27%);
+}
 
 .t3 .theme-changer button {
   background-color: hsl(268, 70%, 12%);
@@ -114,6 +117,12 @@ table {
 .t3 .theme-changer button > div {
   background-color: hsl(176, 100%, 44%);
   left: calc(100% - 16px);
+}
+.t3 .theme-changer button:hover {
+  background-color: hsl(268, 71%, 12%);
+}
+.t3 .theme-changer button:hover > div {
+  background-color: hsl(177, 92%, 70%);
 }
 
 .button-container {

@@ -72,22 +72,41 @@
     }
 }
 
-.t2 .theme-changer button {
-    background-color: v.$background-keypad-toggle-t2;
+.t2 .theme-changer {
+    button {
+        background-color: v.$background-keypad-toggle-t2;
 
-    > div {
-        background-color: v.$equals-key-toggle-t2;
+        > div {
+            background-color: v.$equals-key-toggle-t2;
 
-        left: calc(50% - 8px);
+            left: calc(50% - 8px);
+        }
+    }
+
+    button:hover {
+
+        > div {
+            background-color: v.$equals-key-toggle-shadow-t2;
+        }
     }
 }
 
-.t3 .theme-changer button {
-    background-color: v.$background-keypad-toggle-t3;
+.t3 .theme-changer {
+    button {
+        background-color: v.$background-keypad-toggle-t3;
 
-    > div {
-        background-color: v.$equals-key-toggle-t3;
+        > div {
+            background-color: v.$equals-key-toggle-t3;
 
-        left: calc(100% - 16px);
+            left: calc(100% - 16px);
+        }
+    }
+
+    button:hover {
+        background-color: v.$background-screen-t3;
+
+        > div {
+            background-color: v.$equals-key-toggle-shadow-t3;
+        }
     }
 }
