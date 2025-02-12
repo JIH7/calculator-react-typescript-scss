@@ -57,7 +57,7 @@ So this is actually the third time I've made this calculator. The first time I m
 
 A recurring theme in my last several projects has been more organized styles. This time I learned about `@use` in SCSS. This allowed for much more organized style sheets that still all compile to one output CSS file, as well as the ability to import my SCSS variables when needed. I also used variables for my media query breakpoints which helped make things feel even more organized. I did encounter an issue when I switched from my desktop to my laptop, not realizing that my laptop had a zoom level of 1.5 times set in Windows which completely broke my layout. I did learn a bit about CSS pixel ratios, but ultimately just added a media query for screen height that shrinks the page vertically a bit.
 
-As for React and TypeScript, I made a calculator class that I wanted to store in a state variable. I ran into issues updating it as using the spread operator to pass it's values so React would actually re-render caused the object to lose it's functions. Ultimately, I made a second class for the variables, and a new Calculator is declared every time something updates with a CalculatorData object passed into the constructor.
+As for React and TypeScript, I made a calculator class that I wanted to store in a state variable. I ran into issues updating it. For instance, using the spread operator to pass the calculator's values as props so that React would actually re-render caused the object to lose it's functions. Ultimately, I made a second class for the variables, and a new Calculator is declared every time something updates with a CalculatorData object passed into the constructor.
 
 ```ts
 const [calcData, setCalcData] = useState(new CalculatorData())
@@ -71,9 +71,7 @@ const updateCalculator = (input: string) => {
 }
 ```
 
- I was pretty happy with this solution, although I do wonder whether this was the best way to do this. If anyone has any insight to this I would love to hear from you!
-
- Another goal I had with this iteration of the project was to support keyboard input. I was surprised to learn I could do this on a React component that doesn't render anything!
+ Another goal I had with this iteration of the project was to support keyboard input. I was surprised to learn I could do this on a React component that doesn't render anything.
 
  ```ts
 import { useEffect } from "react";
