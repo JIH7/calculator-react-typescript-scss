@@ -33,7 +33,6 @@ Users should be able to:
 
 ### Links
 
-- [Solution](#)
 - [Live Site](https://helsel-calculator-ts.netlify.app/)
 
 ## My process
